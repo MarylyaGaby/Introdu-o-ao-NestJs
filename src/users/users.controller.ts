@@ -25,4 +25,8 @@ export class UserController {
         return this.userService.create(user)
     }
 
+    /**Exercício rapido:
+     * crie uma rota para atualizar usuario recebendo o id do usuario a ser atualizado e as novas
+     * informacoes de usuario
+     */
 }
