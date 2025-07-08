@@ -1,14 +1,19 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto} from './dto/create-user.dto';
-import { ApiBody,ApiOperation,ApiResponse, ApiParam } from '@nestjs/swagger';
+import { ApiBody,ApiOperation,ApiResponse, ApiParam, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { AdminGuard } from 'src/auth/admin.guard';
 
+@ApiTags('users')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
 constructor(private readonly usersService: UsersService) {}
-   //Rota de criar usário
+   /*//Rota de criar usário
    @Post()
    @ApiOperation({summary:'Criar um novo usuário'})
    @ApiBody({type: CreateUserDto})
@@ -16,7 +21,9 @@ constructor(private readonly usersService: UsersService) {}
     create(@Body() data: CreateUserDto) {
         return this.usersService.create(data);
   }
-
+*/
+  @UseGuards(JwtAuthGuard)
+  @UseGuards(AdminGuard)
   @Get()
     @ApiOperation({ summary: 'Listar todos os usuários' })
     @ApiResponse({ status: 200, description: 'Lista de usuários retornada com sucesso.' })
