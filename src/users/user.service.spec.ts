@@ -92,7 +92,7 @@ describe("UsersService", () => {
     });
    });
 
-   it("deve remover um usuário", async () => {
+   it("deve deletar um usuário", async () => {
     const removed = { id: 1, name: "Jonas", email: "jonas@example.com", password: "123" };
     mockPrisma.user.delete.mockResolvedValue(removed);
 
