@@ -35,6 +35,6 @@ async function bootstrap() {
         // EX:(string -> number)
       })
     )
-    await app.listen(3000);
+    await app.listen(process.env.API_PORT ?? 3000);
 }
 bootstrap();
