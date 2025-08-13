@@ -4,8 +4,8 @@ import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto} from './dto/create-user.dto';
 import { ApiBody,ApiOperation,ApiResponse, ApiParam, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
-import { AdminGuard } from 'src/auth/admin.guard';
+import { JwtAuthGuard } from '../auth/jwt.guard';
+import { AdminGuard } from '../auth/admin.guard';
 
 @ApiTags('users')
 @UseGuards(JwtAuthGuard)
@@ -58,3 +58,5 @@ constructor(private readonly usersService: UsersService) {}
         return this.usersService.remove(id);
     }
     }
+
+
